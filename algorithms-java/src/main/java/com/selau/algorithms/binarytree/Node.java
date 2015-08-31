@@ -33,5 +33,4 @@ public class Node {
         return payload;
     }
 
-
 }
