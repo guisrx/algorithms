@@ -70,6 +70,10 @@ public class MergeSort {
         final int[] arrayD = {};
         mergesort(arrayD);
         Assert.assertTrue(verifySorted(arrayD));
+
+        final int[] arrayE = {5};
+        mergesort(arrayE);
+        Assert.assertTrue(verifySorted(arrayE));
     }
 
     private boolean verifySorted(final int[] array) {
