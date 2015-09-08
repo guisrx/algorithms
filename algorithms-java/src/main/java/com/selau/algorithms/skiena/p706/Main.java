@@ -1,4 +1,4 @@
-package com.selau.algorithms.p706;
+package com.selau.algorithms.skiena.p706;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
