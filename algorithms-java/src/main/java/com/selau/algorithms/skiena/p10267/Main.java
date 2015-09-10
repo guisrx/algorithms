@@ -1,10 +1,12 @@
-package com.selau.algorithms.skiena.p10267;
+// package com.selau.algorithms.skiena.p10267;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 
 /** Rules:
@@ -171,7 +173,7 @@ class Main {
             final int maxY = picture[0].length;
             final int pictureSize = maxX * maxY;
 
-            // final Set<Point> visited = new HashSet<Point>(pictureSize);
+            final Set<Point> visited = new HashSet<Point>(pictureSize);
             final List<Point> adjacents = new ArrayList<Point>(pictureSize);
 
             adjacents.add(new Point(pointX, pointY));
@@ -181,7 +183,7 @@ class Main {
                 final Point p = adjacents.remove(0);
 
                 picture[p.x][p.y] = color;
-                // visited.add(p);
+                visited.add(p);
 
                 final Point quad1 = new Point(p.x +1, p.y -1);
                 final Point quad2 = new Point(p.x +1, p.y);
@@ -196,33 +198,42 @@ class Main {
 
                 if (p.x +1 < maxX) {
 
-                    if ((p.y -1 >= 0) && (picture[p.x +1][p.y -1] == originalColor) /*&& (! visited.contains(quad1))*/)
+                    if ((p.y -1 >= 0) && (picture[p.x +1][p.y -1] == originalColor) && (! visited.contains(quad1)))
                         adjacents.add(quad1);
 
-                    if ((picture[p.x +1][p.y] == originalColor) /*&& (! visited.contains(quad2))*/)
+                    if ((picture[p.x +1][p.y] == originalColor) && (! visited.contains(quad2)))
                         adjacents.add(quad2);
 
-                    if ((p.y +1 < maxY) && (picture[p.x +1][p.y +1] == originalColor) /*&& (! visited.contains(quad3))*/)
+                    if ((p.y +1 < maxY) && (picture[p.x +1][p.y +1] == originalColor) && (! visited.contains(quad3)))
                         adjacents.add(quad3);
                 }
 
-                if ((p.y -1 >= 0) && (picture[p.x][p.y -1] == originalColor) /*&& (! visited.contains(quad4))*/)
+                if ((p.y -1 >= 0) && (picture[p.x][p.y -1] == originalColor) && (! visited.contains(quad4)))
                     adjacents.add(quad4);
 
-                if ((p.y +1 < maxY) && (picture[p.x][p.y +1] == originalColor) /*&& (! visited.contains(quad5))*/)
+                if ((p.y +1 < maxY) && (picture[p.x][p.y +1] == originalColor) && (! visited.contains(quad5)))
                     adjacents.add(quad5);
 
                 if (p.x -1 >= 0) {
 
-                    if ((p.y -1 >= 0) && (picture[p.x -1][p.y -1] == originalColor) /*&& (! visited.contains(quad6))*/)
+                    if ((p.y -1 >= 0) && (picture[p.x -1][p.y -1] == originalColor) && (! visited.contains(quad6)))
                         adjacents.add(quad6);
 
-                    if ((picture[p.x -1][p.y] == originalColor) /*&& (! visited.contains(quad7))*/)
+                    if ((picture[p.x -1][p.y] == originalColor) && (! visited.contains(quad7)))
                         adjacents.add(quad7);
 
-                    if ((p.y +1 < maxY) && (picture[p.x -1][p.y +1] == originalColor) /*&& (! visited.contains(quad8))*/)
+                    if ((p.y +1 < maxY) && (picture[p.x -1][p.y +1] == originalColor) && (! visited.contains(quad8)))
                         adjacents.add(quad8);
                 }
+
+                visited.add(quad1);
+                visited.add(quad2);
+                visited.add(quad3);
+                visited.add(quad4);
+                visited.add(quad5);
+                visited.add(quad6);
+                visited.add(quad7);
+                visited.add(quad8);
             }
             return picture;
         }
