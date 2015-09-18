@@ -1,5 +1,6 @@
 // package com.selau.algorithms.skiena.p10267;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,7 +74,7 @@ class Main {
 
     static class GraphicalEditor {
 
-        private static final char WHITE = '0';
+        public static final char WHITE = 'O';
 
 
         public char[][] create(final int m, final int n) {
@@ -305,138 +306,134 @@ class Main {
             if (picture == null)
                 throw new IllegalArgumentException("Invalid picture !");
         }
-
-//        @Test
-//        public void fillTest() {
-//            // given
-//            final GraphicalEditor subject = new GraphicalEditor();
-//            final int m = 250;
-//            final int n = 250;
-//
-//            final char[][] picture = subject.create(m, n);
-//
-////            picture[0][0] = 1;
-////            picture[1][1] = 1;
-////            picture[2][2] = 1;
-////            picture[3][3] = 1;
-////            picture[4][4] = 1;
-//
-//            //subject.writePicture(picture, "test.pic");
-//
-//            // when
-//            subject.fillRegion(picture, 0, 4, '5');
-//
-//            // then
-//            subject.writePicture(picture, "test.pic");
-//        }
-//
-//        @Test
-//        public void testColorPicture() {
-//            // given
-//            final GraphicalEditor subject = new GraphicalEditor();
-//            final int m = 3;
-//            final int n = 3;
-//
-//            final int colorX = 2;
-//            final int colorY = 2;
-//            final char color = '5';
-//
-//            final char[][] picture = subject.create(m, n);
-//
-//            // when
-//            subject.color(picture, colorX, colorY, color);
-//
-//            // then
-//            for (int i = 0; i < m; i++)
-//                for (int j = 0; j < n; j++)
-//                    if ((i == colorX) && (j == colorY))
-//                        Assert.assertEquals(color, picture[i][j]);
-//                    else
-//                        Assert.assertEquals(WHITE, picture[i][j]);
-//        }
-//
-//        @Test
-//        public void testCreatePicture() {
-//            // given
-//            final GraphicalEditor subject = new GraphicalEditor();
-//            final int m = 3;
-//            final int n = 2;
-//
-//            // when
-//            final char[][] picture = subject.create(m, n);
-//
-//            // then
-//            for (int i = 0; i < m; i++)
-//                for (int j = 0; j < n; j++)
-//                    Assert.assertEquals(WHITE, picture[i][j]);
-//        }
-//
-//        @Test
-//        public void testClearPicture() {
-//            // given
-//            final GraphicalEditor subject = new GraphicalEditor();
-//            final int m = 3;
-//            final int n = 2;
-//
-//            final char[][] picture = subject.create(m, n);
-//
-//            for (int i = 0; i < m; i++)
-//                for (int j = 0; j < n; j++)
-//                    picture[i][j] = 'A';
-//
-//            // when
-//            final char[][] finalPicture = subject.clear(picture);
-//
-//            // then
-//            for (int i = 0; i < m; i++)
-//                for (int j = 0; j < n; j++)
-//                    Assert.assertEquals(WHITE, finalPicture[i][j]);
-//        }
-//
-//        @Test
-//        public void testValidCallToValidatePictureAndCoordinates() {
-//            // given
-//            final GraphicalEditor subject = new GraphicalEditor();
-//            final int m = 3;
-//            final int n = 2;
-//
-//            final char[][] picture = subject.create(m, n);
-//
-//            // when then should not throw exception
-//            subject.validatePictureAndCoordinates(picture, 0, 1);
-//        }
-//
-//        @Test(expected=IllegalArgumentException.class)
-//        public void testInvalidPictureCallToValidatePictureAndCoordinates() {
-//            // given
-//            final GraphicalEditor subject = new GraphicalEditor();
-//
-//            // when then should not throw exception
-//            subject.validatePictureAndCoordinates(null, 0, 1);
-//        }
-//
-//        @Test(expected=IllegalArgumentException.class)
-//        public void testInvalidCoordinatesCallToValidatePictureAndCoordinates() {
-//            // given
-//            final GraphicalEditor subject = new GraphicalEditor();
-//            final int m = 3;
-//            final int n = 2;
-//
-//            final char[][] picture = subject.create(m, n);
-//
-//            // when then should not throw exception
-//            subject.validatePictureAndCoordinates(picture, 4, 4);
-//        }
-
     }
+
+//    @Test
+//    public void fillTest() {
+//        // given
+//        final GraphicalEditor subject = new GraphicalEditor();
+//        final int m = 100;
+//        final int n = 100;
+//
+//        final char[][] picture = subject.create(m, n);
+//
+//        subject.writePicture(picture, "test.pic");
+//
+//        // when
+//        subject.fillRegion(picture, 0, 4, '5');
+//
+//        // then
+//        subject.writePicture(picture, "test.pic");
+//    }
+//
+//    @Test
+//    public void testColorPicture() {
+//        // given
+//        final GraphicalEditor subject = new GraphicalEditor();
+//        final int m = 3;
+//        final int n = 3;
+//
+//        final int colorX = 2;
+//        final int colorY = 2;
+//        final char color = '5';
+//
+//        final char[][] picture = subject.create(m, n);
+//
+//        // when
+//        subject.color(picture, colorX, colorY, color);
+//
+//        // then
+//        for (int i = 0; i < m; i++)
+//            for (int j = 0; j < n; j++)
+//                if ((i == colorX) && (j == colorY))
+//                    Assert.assertEquals(color, picture[i][j]);
+//                else
+//                    Assert.assertEquals(GraphicalEditor.WHITE, picture[i][j]);
+//    }
+//
+//    @Test
+//    public void testCreatePicture() {
+//        // given
+//        final GraphicalEditor subject = new GraphicalEditor();
+//        final int m = 3;
+//        final int n = 2;
+//
+//        // when
+//        final char[][] picture = subject.create(m, n);
+//
+//        // then
+//        for (int i = 0; i < m; i++)
+//            for (int j = 0; j < n; j++)
+//                Assert.assertEquals(GraphicalEditor.WHITE, picture[i][j]);
+//    }
+//
+//    @Test
+//    public void testClearPicture() {
+//        // given
+//        final GraphicalEditor subject = new GraphicalEditor();
+//        final int m = 3;
+//        final int n = 2;
+//
+//        final char[][] picture = subject.create(m, n);
+//
+//        for (int i = 0; i < m; i++)
+//            for (int j = 0; j < n; j++)
+//                picture[i][j] = 'A';
+//
+//        // when
+//        final char[][] finalPicture = subject.clear(picture);
+//
+//        // then
+//        for (int i = 0; i < m; i++)
+//            for (int j = 0; j < n; j++)
+//                Assert.assertEquals(GraphicalEditor.WHITE, finalPicture[i][j]);
+//    }
+//
+//    @Test
+//    public void testValidCallToValidatePictureAndCoordinates() {
+//        // given
+//        final GraphicalEditor subject = new GraphicalEditor();
+//        final int m = 3;
+//        final int n = 2;
+//
+//        final char[][] picture = subject.create(m, n);
+//
+//        // when then should not throw exception
+//        subject.validatePictureAndCoordinates(picture, 0, 1);
+//    }
+//
+//    @Test(expected=IllegalArgumentException.class)
+//    public void testInvalidPictureCallToValidatePictureAndCoordinates() {
+//        // given
+//        final GraphicalEditor subject = new GraphicalEditor();
+//
+//        // when then should not throw exception
+//        subject.validatePictureAndCoordinates(null, 0, 1);
+//    }
+//
+//    @Test(expected=IllegalArgumentException.class)
+//    public void testInvalidCoordinatesCallToValidatePictureAndCoordinates() {
+//        // given
+//        final GraphicalEditor subject = new GraphicalEditor();
+//        final int m = 3;
+//        final int n = 2;
+//
+//        final char[][] picture = subject.create(m, n);
+//
+//        // when then should not throw exception
+//        subject.validatePictureAndCoordinates(picture, 4, 4);
+//    }
 
 
     public static void main(final String args[]) throws FileNotFoundException {
         final GraphicalEditor editor = new GraphicalEditor();
         char[][] picture = null;
 
-        // final Scanner inputScanner = new Scanner(new FileInputStream(args[0]));
-        final Scanner inputScanner = new Scanner(System.in);
+        final Scanner inputScanner;
+        if ((args != null) && (args.length == 1))
+            inputScanner =  new Scanner(new FileInputStream(args[0]));
+        else
+            inputScanner = new Scanner(System.in);
 
         int column, line, columns, lines, line1, line2, column1, column2;
         char color;
