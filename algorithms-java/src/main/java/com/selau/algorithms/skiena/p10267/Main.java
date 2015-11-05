@@ -1,4 +1,4 @@
-// package com.selau.algorithms.skiena.p10267;
+package com.selau.algorithms.skiena.p10267;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,7 +31,7 @@ import java.util.Set;
 class Main {
 
 
-    static class Point {
+    private static class Point {
 
         final int x;
         final int y;
