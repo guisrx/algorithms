@@ -33,42 +33,19 @@ import org.junit.Test;
  * @author selau
  *
  */
-public class Solution {
+public class SolutionBasic {
 
 
-    static int countMakeChangeWays(final int amount, final int[] coins) {
-        final Map<Integer, Integer> cache = new HashMap<Integer, Integer>();
+    static Set<List<Integer>> countMakeChangeWays(final int amount, final int[] coins) {
+        final Map<Integer, Set<List<Integer>>> cache = new HashMap<Integer, Set<List<Integer>>>();
 
         return countMakeChangeWays(amount, coins, cache);
     }
 
-    private static int countMakeChangeWays(final int amount, final int[] coins, final Map<Integer, Integer> cache) {
-
-
-        for (int coinIndex = 0; coinIndex < coins.length; coinIndex++) {
-            final int coin = coins[coinIndex];
-
-            if (amount < coin)
-                continue;
-
-            final int amountUsingCoin = amount - coin;
-            final Set<List<Integer>> newWays;
-
-            if (cache.containsKey(amountUsingCoin)) {
-                newWays = cache.get(amountUsingCoin);
-            } else {
-                newWays = countMakeChangeWays(amountUsingCoin, coins, cache);
-                cache.put(amountUsingCoin, newWays);
-            }
-
-
-
-
-
-
-
-
-
+    private static Set<List<Integer>> countMakeChangeWays(
+            final int amount,
+            final int[] coins,
+            final Map<Integer, Set<List<Integer>>> cache) {
 
         final Set<List<Integer>> ways = new HashSet<List<Integer>>();
 
